@@ -1,0 +1,14 @@
+$color1: rgba(128, 128, 128, 0.15);
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box
+}
+
+body {
+    width: 95vw;
+    margin: auto;
+    height: 100vh;
+    background-color: $color1
+}
