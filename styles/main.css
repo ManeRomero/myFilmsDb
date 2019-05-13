@@ -2,26 +2,67 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Lato", sans-serif;
 }
 
 body {
   width: 95vw;
   margin: auto;
   height: 100vh;
-  background-color: rgba(128, 128, 128, 0.15);
-  border: 1px solid grey;
+  background-color: rgba(0, 0, 255, 0.342);
 }
 
 section {
-  margin-top: 10vh;
-  background-color: white;
-  width: 100%;
   display: flex;
   flex-direction: row;
   flex-flow: wrap;
+  border: 1px solid grey;
+  margin-top: 10vh;
+  width: 100%;
+  background-color: white;
 }
 section .card {
-  width: 25%;
+  display: flex;
+  padding: 1vh;
+  width: 22%;
+  margin: 1.5%;
+  flex-direction: column;
+  border: 1px solid grey;
+  border-radius: 5px;
+  background-color: white;
+  position: relative;
+}
+section .card img {
+  width: 90%;
+  height: auto;
+  margin: 1vh auto;
+  border-radius: 15px;
+}
+section .card:hover {
+  cursor: pointer;
+  transform: translateY(-10px);
+  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.22);
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.22);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.22);
+}
+section .card .divBottom {
+  margin-top: 2vh;
+  display: flex;
+  justify-content: space-between;
+}
+section .card .divBottom h1 {
+  flex: 1.2;
+  display: inline;
+}
+section .card .divBottom .voteContain {
+  flex: 0.8;
+  text-align: right;
+}
+section .card .divBottom .voteContain .fa-star, section .card .divBottom .voteContain .fa-star-half-alt {
+  color: gold;
+}
+section .card .divBottom .voteContain .far {
+  color: grey;
 }
 
 /*# sourceMappingURL=main.css.map */
