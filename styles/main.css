@@ -11,4 +11,10 @@ body {
   background-color: rgba(128, 128, 128, 0.15);
 }
 
+section {
+  margin-top: 10vh;
+  background-color: white;
+  width: 100%;
+}
+
 /*# sourceMappingURL=main.css.map */
