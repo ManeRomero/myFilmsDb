@@ -8,19 +8,20 @@
 body {
   width: 95vw;
   margin: auto;
-  height: 100vh;
+  min-height: 100vh;
   background-color: rgba(0, 0, 255, 0.342);
 }
 
 nav {
   position: sticky;
   top: 0;
-  background-color: cornflowerblue;
+  background-color: rgba(100, 148, 237, 0.25);
   z-index: 100;
   margin-top: 5vh;
   display: flex;
   justify-content: space-around;
   padding: 1vw;
+  border-radius: 50px 5px 50px 5px;
 }
 nav input {
   margin: 1vw;
@@ -32,6 +33,7 @@ nav input {
 nav button {
   margin: 1vw;
   flex: 0.5;
+  cursor: pointer;
 }
 
 section {

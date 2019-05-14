@@ -1,74 +1,81 @@
 import database from './films.js';
+
+const CONTAINER = document.querySelector('section')
+const BTN_CATCH = document.querySelector('#searchBtn')
 const URL = 'http://image.tmdb.org/t/p/w185/'
-let idFake = 0
+const STAR_FULL = 'fas fa-star'
+const STAR_EMPTY = 'far fa-star'
 
 window.addEventListener('load', () => {
-    let container = document.querySelector('section')
+    showContent(database)
+})
 
-    for (let film of database) {
-        let {release_date, title, poster_path, vote_average, overview} = film
-        let countStars = vote_average / 2
+BTN_CATCH.addEventListener('click', goSearch)
+
+function showContent(givenData) {
+    CONTAINER.innerHTML = ''
+    for (let film of givenData) {
+        let {
+            release_date,
+            id,
+            title,
+            poster_path,
+            vote_average,
+            overview
+        } = film
+
+        const COUNT_STARS = vote_average / 2
         let maxVoteValue = 5
 
         let card = document.createElement('div')
-        let date = document.createElement('small')
-        let pic = document.createElement('img')
-        let titleCard = document.createElement('h1')
+        card.innerHTML = `<small>${release_date}</small>
+        <img src="${URL + poster_path}"</img>
+        <div class="divBottom"><h1>${title}</h1>
+        `
+        card.id = `${'card_' + id}`
+        card.setAttribute('title', `${title} \n${release_date}\n\nValoración del público: ${vote_average}\n\n(Click para ver Sinopsis)`)
+
         let rateContainer = document.createElement('div')
         let divBottom = document.createElement('div')
         let descriptionText = document.createElement('small')
-        let descriptionIcon = document.createElement('i')
-
 
         divBottom.className = 'divBottom'
         card.className = 'card'
         rateContainer.className = 'voteContain'
-        descriptionIcon.className = 'fas fa-eye'
-        descriptionIcon.id = 'icon_' + idFake
         descriptionText.className = 'description'
-        idFake++
-
-        date.innerText = release_date
-        titleCard.innerText = title
+        
         descriptionText.innerText = overview
-        pic.setAttribute('src', URL + poster_path)
-        rateContainer.setAttribute('title', `Valoración del público: ${vote_average}`)
-
-
-    for (let i = 0; i < maxVoteValue; i++) {
-        if (i < countStars) {
+        
+        for (let i = 0; i < maxVoteValue; i++) {
             let icon = document.createElement('i')
-            icon.className = 'fas fa-star'
-            rateContainer.appendChild(icon)
-        } else {
-            let icon = document.createElement('i')
-            icon.className = 'far fa-star'
+            i < COUNT_STARS ? icon.innerHTML=`<i class="${STAR_FULL}"></i>` : icon.innerHTML=`<i class="${STAR_EMPTY}"></i>`
             rateContainer.appendChild(icon)
         }
+        
+        divBottom.appendChild(rateContainer)
+        card.appendChild(divBottom)
+        card.appendChild(descriptionText)
+        CONTAINER.appendChild(card)
+
+    }
+    const BTN_DESCRIPTION = document.querySelectorAll('#card')
+    console.log(BTN_DESCRIPTION)
+}
+
+function goSearch() {
+    let searchValue = document.querySelector('#searchInput').value
+    console.log(searchValue)
+
+    if (searchValue.length < 2) {
+        document.querySelector('#searchInput').value = ''
+        return console.log('Introduce mas caracteres para buscar.')
     }
 
-    divBottom.appendChild(titleCard)
-    divBottom.appendChild(rateContainer)
+    let newList = database.filter(item => item.title.includes(searchValue))
+    showContent(newList)
+}
 
-    card.appendChild(date)
-    card.appendChild(pic)
-    card.appendChild(divBottom)
-    card.appendChild(descriptionIcon)
-    card.appendChild(descriptionText)
-    container.appendChild(card)
 
-/*  
-    tratar de hacer un toggleButton
-
-    let listener = document.querySelector('#icon_')
-    descriptionIcon.addEventListener('click', show)
-
-    function show (evt) {
-        let selected = evt.innerHtml.id
-        console.log(selected)
-    }
-*/
-    }
-
-    
-})
+function showDescription() {
+    alert('FUNCIONA!!', event.currentTarget.id)
+}
