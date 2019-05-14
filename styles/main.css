@@ -12,12 +12,34 @@ body {
   background-color: rgba(0, 0, 255, 0.342);
 }
 
+nav {
+  position: sticky;
+  top: 0;
+  background-color: cornflowerblue;
+  z-index: 100;
+  margin-top: 5vh;
+  display: flex;
+  justify-content: space-around;
+  padding: 1vw;
+}
+nav input {
+  margin: 1vw;
+  flex: 1;
+  border-radius: 5px;
+  height: 50px;
+  font-size: 1em;
+}
+nav button {
+  margin: 1vw;
+  flex: 0.5;
+}
+
 section {
   display: flex;
   flex-direction: row;
   flex-flow: wrap;
   border: 1px solid grey;
-  margin-top: 10vh;
+  margin-top: 5vh;
   width: 100%;
   background-color: white;
 }
@@ -63,6 +85,12 @@ section .card .divBottom .voteContain .fa-star, section .card .divBottom .voteCo
 }
 section .card .divBottom .voteContain .far {
   color: grey;
+}
+section .card .description {
+  display: none;
+}
+section .card .descriptionShow {
+  display: block;
 }
 
 /*# sourceMappingURL=main.css.map */

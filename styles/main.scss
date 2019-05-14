@@ -15,12 +15,36 @@ body {
     background-color: $color1;
 }
 
+nav {
+    position: sticky;
+    top: 0;
+    background-color: cornflowerblue;
+    z-index: 100;
+    margin-top: 5vh;
+    display: flex;
+    justify-content: space-around;
+    padding: 1vw;
+
+    input {
+        margin: 1vw;
+        flex: 1;
+        border-radius: 5px;
+        height: 50px;
+        font-size: 1em
+    }
+
+    button {
+        margin: 1vw;
+        flex: .5
+    }
+}
+
 section {
     display: flex;
     flex-direction: row;
     flex-flow: wrap;
     border: 1px solid grey;
-    margin-top: 10vh;
+    margin-top: 5vh;
     width: 100%;
     background-color: white;
 
@@ -72,6 +96,14 @@ section {
                     color: grey
                 }
             }
+        }
+
+        .description {
+            display: none
+        }
+
+        .descriptionShow {
+            display: block
         }
     }
 }
