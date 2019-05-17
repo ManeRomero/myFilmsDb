@@ -12,14 +12,19 @@ body {
   background-color: rgba(0, 0, 255, 0.342);
 }
 
+a {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.85);
+}
+
 nav {
   position: sticky;
   top: 0;
   background-color: rgba(100, 148, 237, 0.25);
   z-index: 100;
-  margin-top: 5vh;
   display: flex;
   justify-content: space-around;
+  align-items: center;
   padding: 1vw;
   border-radius: 50px 5px 50px 5px;
 }
@@ -30,69 +35,131 @@ nav input {
   height: 50px;
   font-size: 1em;
 }
+nav a {
+  flex: 0.5;
+}
+nav a h3 {
+  padding: 1vw;
+  border: 1px solid grey;
+  text-align: center;
+}
 nav button {
+  height: 50px;
   margin: 1vw;
   flex: 0.5;
   cursor: pointer;
 }
 
-section {
+#index-container {
   display: flex;
   flex-direction: row;
   flex-flow: wrap;
   border: 1px solid grey;
-  margin-top: 5vh;
   width: 100%;
   background-color: white;
 }
-section .card {
-  display: flex;
+#index-container .card {
+  text-align: center;
   padding: 1vh;
   width: 22%;
   margin: 1.5%;
-  flex-direction: column;
-  border: 1px solid grey;
+  border: 1px solid rgba(128, 128, 128, 0.335);
   border-radius: 5px;
   background-color: white;
   position: relative;
 }
-section .card img {
-  width: 90%;
-  height: auto;
-  margin: 1vh auto;
-  border-radius: 15px;
-}
-section .card:hover {
+#index-container .card:hover {
   cursor: pointer;
   transform: translateY(-10px);
   box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.22);
   -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.22);
   -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.22);
 }
-section .card .divBottom {
+#index-container .card img {
+  width: 60%;
+  height: auto;
+  margin: 1vh auto;
+  border-radius: 15px;
+}
+#index-container .card small,
+#index-container .card .fa-user {
+  padding: 1vh;
+  color: grey;
+}
+#index-container .card .voteContain {
+  display: flex;
+  flex-direction: row;
+  margin-top: 3vh;
+  justify-content: center;
+  flex: 0.8;
+  padding-bottom: 0;
+}
+#index-container .card .voteContain .fa-star,
+#index-container .card .voteContain .fa-star-half-alt {
+  color: gold;
+}
+#index-container .card .voteContain .far {
+  color: grey;
+}
+#index-container .card .divBottom {
   margin-top: 2vh;
   display: flex;
   justify-content: space-between;
 }
-section .card .divBottom h1 {
+#index-container .card .divBottom h1 {
+  font-size: 130%;
   flex: 1.2;
   display: inline;
+  text-align: center;
+  padding-bottom: 3vh;
 }
-section .card .divBottom .voteContain {
-  flex: 0.8;
-  text-align: right;
+
+#detail-container {
+  margin: 1vh auto 0 0;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
-section .card .divBottom .voteContain .fa-star, section .card .divBottom .voteContain .fa-star-half-alt {
+#detail-container > div {
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+  position: relative;
+}
+#detail-container > div .titleDetail {
+  padding: 0.5vw;
+  margin-top: 5vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid grey;
+  border-right: 1px solid grey;
+}
+#detail-container > div .titleDetail h1 {
+  font-size: 3vw;
+}
+#detail-container > div .titleDetail .voteContain i {
+  font-size: 1em;
+}
+#detail-container > div .titleDetail .voteContain .fas {
   color: gold;
 }
-section .card .divBottom .voteContain .far {
+#detail-container > div .titleDetail .voteContain .far, #detail-container > div .titleDetail .voteContain .fa-user {
   color: grey;
 }
-section .card .description {
-  display: none;
+#detail-container > div img {
+  margin: 3vh auto;
+  width: 50%;
+  height: auto;
 }
-section .card .descriptionShow {
-  display: block;
+#detail-container > div p {
+  font-size: 1.4vw;
+  position: absolute;
+  bottom: 8vh;
 }
 
 /*# sourceMappingURL=main.css.map */
