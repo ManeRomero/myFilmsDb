@@ -44,15 +44,19 @@ nav button {
   padding: 10px;
 }
 nav button:hover {
-  color: black;
-  background-color: white;
+  border: 1px solid gold;
+  color: gold;
   transform: translateY(-3px);
 }
 nav a {
+  transition: 0.5s;
   color: grey;
-  font-weight: 100;
+  font-weight: 800;
   font-size: 1em;
   padding: 10px;
+}
+nav a:hover {
+  color: gold;
 }
 nav i {
   color: grey;
@@ -64,6 +68,46 @@ nav input {
   border-bottom: 3px solid grey;
   width: 30vw;
   outline-style: none;
+  color: gold;
+}
+nav input:hover {
+  border-color: gold;
+}
+
+.detailNav {
+  position: relative;
+}
+
+.bckgr {
+  width: 100%;
+  height: 25vh;
+  color: cornflowerblue;
+  background-image: url("../img/padrinoStaff.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position-y: -190px;
+  background-attachment: fixed;
+  opacity: 0.5;
+  position: relative;
+}
+@media (max-width: 850px) {
+  .bckgr {
+    background-position-y: 0px;
+  }
+}
+@media (max-width: 450px) {
+  .bckgr {
+    width: 97%;
+  }
+}
+.bckgr h1 {
+  position: absolute;
+  bottom: 2vh;
+  right: 8vw;
+  color: gold;
+  font-weight: 900;
+  letter-spacing: 2px;
+  background-color: rgba(0, 0, 0, 0.473);
 }
 
 #indexContainer {
@@ -83,6 +127,16 @@ nav input {
   border-radius: 5px;
   background-color: white;
   position: relative;
+}
+@media (max-width: 850px) {
+  #indexContainer .card {
+    width: 47%;
+  }
+}
+@media (max-width: 450px) {
+  #indexContainer .card {
+    width: 97%;
+  }
 }
 #indexContainer .card:hover {
   cursor: pointer;
@@ -105,7 +159,7 @@ nav input {
 #indexContainer .card .voteContain {
   display: flex;
   flex-direction: row;
-  margin-top: 3vh;
+  margin-top: 2vh;
   justify-content: center;
   flex: 0.8;
   padding-bottom: 0;
@@ -130,6 +184,10 @@ nav input {
   padding-bottom: 3vh;
 }
 
+#detailContainer {
+  width: 100%;
+  margin: auto;
+}
 #detailContainer h1 {
   font-size: 5vw;
   border-bottom: 5px solid black;
@@ -158,6 +216,67 @@ nav input {
 }
 #detailContainer .voteContain .fa-user {
   color: black;
+}
+
+.picsContainer {
+  margin-top: 5vh;
+  background-color: rgba(128, 128, 128, 0.397);
+  max-height: 60vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.picsContainer .posterImg {
+  height: 100%;
+  width: auto;
+  align-self: center;
+}
+.picsContainer .bckgrImg {
+  position: absolute;
+  bottom: -30vh;
+  border-radius: 0;
+  width: 100%;
+  height: auto;
+  background-attachment: fixed;
+  z-index: -1;
+  filter: brightness(0.2) contrast(200%) opacity(10%) drop-shadow(16px 16px 20px blue);
+  filter: hue-rotate(90deg);
+  filter: invert(75%);
+  filter: opacity(25%);
+  filter: saturate(30%);
+}
+@media (max-width: 1250px) {
+  .picsContainer .bckgrImg {
+    bottom: 0;
+    transform: scale(1.7);
+  }
+}
+@media (max-width: 850px) {
+  .picsContainer .bckgrImg {
+    bottom: 10vh;
+    transform: scale(1.7);
+  }
+}
+.picsContainer p {
+  padding: 10vw;
+  font-size: 0.9em;
+  font-weight: 600;
+  color: white;
+  background-color: rgba(128, 128, 128, 0.1);
+  text-align: justify;
+}
+@media (max-width: 850px) {
+  .picsContainer p {
+    font-size: 0.7em;
+  }
+}
+@media (max-width: 700px) {
+  .picsContainer p {
+    font-size: 0.6em;
+    padding: 5vw;
+  }
 }
 
 /*# sourceMappingURL=main.css.map */

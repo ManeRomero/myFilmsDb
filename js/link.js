@@ -1,14 +1,26 @@
-import database from './films.js';
-
 window.addEventListener('load', load)
-const BTN_CATCH = document.querySelector('#searchBtn')
-BTN_CATCH.addEventListener('click', goSearch)
+
+const URL_BASE = 'http://image.tmdb.org/t/p/w185/'
+const STAR_FULL = 'fas fa-star'
+const STAR_EMPTY = 'far fa-star'
+
+const API_URL = 'https://api.themoviedb.org/3/';
+const API_PREFIX = 'movie/'
+const API_KEY = '?api_key=8a91f689a2a058d84eef64d25fa79756';
+const API_POST = '&language=en-US'
+let pelicula = []
 
 function load() {
     let url = new URL(window.location.href)
-    let result = url.searchParams.get('pelicula').valueOf()
-    let consulta = database.find(item => result == item.id)
+    let filmID = url.searchParams.get('pelicula').valueOf()
 
+    axios.get(API_URL + API_PREFIX + filmID + API_KEY + API_POST).then((res) => {
+        pelicula = res.data
+        showContent(pelicula)
+    })
+}
+
+function showContent(item) {
     let {
         release_date,
         vote_count,
@@ -16,12 +28,14 @@ function load() {
         title,
         poster_path,
         vote_average,
-        overview
-    } = consulta
+        overview,
+        backdrop_path
+    } = item
 
     const STAR_FULL = 'fas fa-star'
     const STAR_EMPTY = 'far fa-star'
     const URL_BASE = 'http://image.tmdb.org/t/p/w185/'
+    const IMG_PATH_BACKGROUND = 'http://image.tmdb.org/t/p/w1280/' 
     const maxVoteValue = 5
     const COUNT_STARS = vote_average / 2
 
@@ -43,66 +57,68 @@ ${vote_count} votos.">
 <div><i class="fas fa-user"></i><small>${vote_count}</small></div>
 </div>
 </div>
-<img src="${URL_BASE}${poster_path}"></img>
+<div class="picsContainer">
+<img class="posterImg" src="${URL_BASE}${poster_path}"></img>
+<img class="bckgrImg" src="${IMG_PATH_BACKGROUND + backdrop_path}">
+<p>${overview}</p>
+</div>
 </div>
 <div>
-<p>${overview}</p><a href="index.html" class="closeWindow"></a>   
+<a href="index.html" class="closeWindow"></a>   
 </div>
 `
 }
 
-function goSearch() {
-    let searchValue = document.querySelector('#searchInput').value.toLowerCase()
+/* 
+function print(filmsToPrint) {
+    let consulta = filmsToPrint.find(item => result == item.id)
 
-    if (searchValue.length < 2) {
-        document.querySelector('#searchInput').value = ''
-        return console.error('Introduce mas caracteres para buscar.')
-    }
+    let {
+        release_date,
+        vote_count,
+        id,
+        title,
+        poster_path,
+        vote_average,
+        overview,
+        backdrop_path
+    } = consulta
 
-    let newList = database.filter(item => item.title.toLowerCase().includes(searchValue))
-    showContent(newList)
-}
+    const STAR_FULL = 'fas fa-star'
+    const STAR_EMPTY = 'far fa-star'
+    const URL_BASE = 'http://image.tmdb.org/t/p/w185/'
+    const IMG_PATH_BACKGROUND = 'http://image.tmdb.org/t/p/w1280/'
+    const maxVoteValue = 5
+    const COUNT_STARS = vote_average / 2
 
-function showContent(givenData) {
-    const CONTAINER = document.querySelector('#detailContainer')
-    CONTAINER.innerHTML = ''
-    for (let film of givenData) {
-        let {
-            release_date,
-            vote_count,
-            id,
-            title,
-            poster_path,
-            vote_average,
-            overview
-        } = film
+    let insert = document.querySelector('#detailContainer')
 
-        const COUNT_STARS = vote_average / 2
-        let maxVoteValue = 5
-        let card = document.createElement('div')
-        card.setAttribute('title', `${title} \n${release_date}\n\nValoración del público: ${vote_average}\nNúmero de Votos: ${vote_count}\n\n(Click para ver Sinopsis)`)
-        card.setAttribute('data', `${id}`)
-
-        card.innerHTML =
-            `<a href="/detail.html?pelicula=${id}">
-                        <img src="${URL + poster_path}"</img>
-                        <div class="divBottom"><h1>${title}</h1></div>
-                        <i class="fas fa-user"></i><small>${vote_count}</small><a/>`
-
-        let rateContainer = document.createElement('div')
-
-        card.className = 'card'
-        rateContainer.className = 'voteContain'
-        descriptionText.className = 'description'
-        descriptionText.innerText = overview
-
+    function starsCalc() {
+        let htmlContain = ''
         for (let i = 0; i < maxVoteValue; i++) {
-            let icon = document.createElement('i')
-            i < COUNT_STARS ? icon.innerHTML = `<i class="${STAR_FULL}"></i>` : icon.innerHTML = `<i class="${STAR_EMPTY}"></i>`
-            rateContainer.appendChild(icon)
+            i < COUNT_STARS ? htmlContain += `<i class="${STAR_FULL}"></i>` : htmlContain += `<i class="${STAR_EMPTY}"></i>`
         }
-
-        card.appendChild(rateContainer)
-        CONTAINER.appendChild(card)
+        return htmlContain
     }
-}
+
+    insert.innerHTML = `<div>
+<div class="titleDetail" title="Valoración del público ${vote_average}
+${vote_count} votos.">
+<h1>${title}</h1>
+<div class="voteContain"><div>${starsCalc()}</div>
+<div><i class="fas fa-user"></i><small>${vote_count}</small></div>
+</div>
+</div>
+<div class="picsContainer">
+<img class="posterImg" src="${URL_BASE}${poster_path}"></img>
+<img class="bckgrImg" src="${IMG_PATH_BACKGROUND + backdrop_path}">
+<p>${overview}</p>
+</div>
+</div>
+<div>
+<a href="index.html" class="closeWindow"></a>   
+</div>
+`
+
+
+} */

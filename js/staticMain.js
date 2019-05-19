@@ -1,45 +1,28 @@
-window.addEventListener('load', load)
+import database from './films.js';
 
 const URL = 'http://image.tmdb.org/t/p/w185/'
 const STAR_FULL = 'fas fa-star'
 const STAR_EMPTY = 'far fa-star'
 
-const API_URL = 'https://api.themoviedb.org/3/';
-const API_KEY = '?api_key=8a91f689a2a058d84eef64d25fa79756';
-
-const API_POPULAR_URL = 'movie/popular'
-const API_GENRE = 'genre/movie/list'
-
-let peliculas = []
-// let generos = []
-
-const BTN_SORT_TITLE = document.querySelector('#sortTitle')
-BTN_SORT_TITLE.addEventListener('click', sortByTitle)
+const BTN_SORT_RELEASE = document.querySelector('#sortRelease')
+BTN_SORT_RELEASE.addEventListener('click', sortByRelease)
 
 const BTN_SORT_POPULARITY = document.querySelector('#sortPopularity')
 BTN_SORT_POPULARITY.addEventListener('click', sortByPopularity)
 
-const BTN_SORT_RELEASE = document.querySelector('#sortRelease')
-BTN_SORT_RELEASE.addEventListener('click', sortByRelease)
+const BTN_SORT_TITLE = document.querySelector('#sortTitle', sortByTitle)
+BTN_SORT_TITLE.addEventListener('click', sortByTitle)
 
-const BTN_CATCH = document.querySelector('#searchBtn')
-BTN_CATCH.addEventListener('click', goSearch)
+window.addEventListener('load', () => {
+    showContent(database)
+    const BTN_CATCH = document.querySelector('#searchBtn')
+    BTN_CATCH.addEventListener('click', goSearch)
+})
 
-
-function load() {
-
-    axios.get(API_URL + API_POPULAR_URL + API_KEY).then((res) => {
-        peliculas = res.data.results
-        showContent(peliculas)
-    })
-}
-
-function showContent(dataReceipt) {
-
+function showContent(givenData) {
     const CONTAINER = document.querySelector('#indexContainer')
     CONTAINER.innerHTML = ''
-
-    for (let film of dataReceipt) {
+    for (let film of givenData) {
         let {
             release_date,
             vote_count,
@@ -56,17 +39,18 @@ function showContent(dataReceipt) {
         card.setAttribute('title', `${title} \n${release_date}\n\nValoración del público: ${vote_average}\nNúmero de Votos: ${vote_count}\n\n(Click para ver Sinopsis)`)
         card.setAttribute('data', `${id}`)
 
-
         card.innerHTML =
-            `<a href="/detail.html?pelicula=${id}">
-                                        <img src="${URL + poster_path}"</img>
-                                        <div class="divBottom"><h1>${title}</h1></div>
-                                        <i class="fas fa-user"></i><small>${vote_count}</small><a/>`
+        `<a href="/detail.html?pelicula=${id}">
+        <img src="${URL + poster_path}"</img>
+        <div class="divBottom"><h1>${title}</h1></div>
+        <i class="fas fa-user"></i><small>${vote_count}</small><a/>`
 
         let rateContainer = document.createElement('div')
         let descriptionText = document.createElement('small')
+
         card.className = 'card'
         rateContainer.className = 'voteContain'
+        descriptionText.className = 'description'
         descriptionText.innerText = overview
 
         for (let i = 0; i < maxVoteValue; i++) {
@@ -88,13 +72,13 @@ function goSearch() {
         return console.error('Introduce mas caracteres para buscar.')
     }
 
-    let result = peliculas.filter(item => item.title.toLowerCase().includes(searchValue))
-    showContent(result)
+    let newList = database.filter(item => item.title.toLowerCase().includes(searchValue))
+    showContent(newList)
 }
 
 function sortByRelease() {
     const checkClass = BTN_SORT_RELEASE.classList.value
-    peliculas.forEach(item => {
+    database.forEach(item => {
         let calculate = ''
         let date = item.release_date
         for (let i = 0; i < date.length; i++) {
@@ -105,7 +89,7 @@ function sortByRelease() {
         item.dateToCalc = calculate
     })
 
-    let result = peliculas.sort((a, b) => {
+    let result = database.sort((a, b) => {
         if (checkClass === 'release1') {
             BTN_SORT_RELEASE.className = 'release2'
             return b.dateToCalc - a.dateToCalc
@@ -120,7 +104,7 @@ function sortByRelease() {
 
 function sortByPopularity() {
     const checkClass = BTN_SORT_POPULARITY.classList.value
-    let result = peliculas.sort((a, b) => {
+    let result = database.sort((a, b) => {
         if (checkClass == 'popular1') {
             BTN_SORT_POPULARITY.className = 'popular2'
             return b.vote_average - a.vote_average
@@ -133,14 +117,13 @@ function sortByPopularity() {
 }
 
 function sortByTitle() {
-
     const checkClass = BTN_SORT_TITLE.classList.value
     console.log(checkClass)
 
     const refer = ' -0-1-2-3-4-5-6-7-8-9-A-Á-À-B-C-D-E-É-È-F-G-H-I-Í-Ì-J-K-L-M-N-O-Ó-Ò-P-Q-R-S-T-U-Ú-Ù-V-W-X-Y-Z-:-!'
     const reflex = refer.split('-')
 
-    peliculas.forEach(item => { //-> RECORRE LOS TÍTULOS, ASIGNANDO UNA POSICIÓN EN arr CARACTERES
+    database.forEach(item => { //-> RECORRE LOS TÍTULOS, ASIGNANDO UNA POSICIÓN EN arr CARACTERES
         let charSort = []
         let title = item.title
         for (let i = 0; i < title.length; i++) {
@@ -151,7 +134,7 @@ function sortByTitle() {
         }
     })
 
-    peliculas.sort((a, b) => { //-> COMPARA LOS ARRAYS DE CLASIFICACIÓN ALFABÉTICA
+    database.sort((a, b) => { //-> COMPARA LOS ARRAYS DE CLASIFICACIÓN ALFABÉTICA
         let item1 = a.titleRanker
         let item2 = b.titleRanker
 
@@ -165,7 +148,7 @@ function sortByTitle() {
             }
             return 0
         }
-
+        
         if (checkClass == 'title2') {
             BTN_SORT_TITLE.className = 'title1'
             if (item1 < item2) {
@@ -178,5 +161,5 @@ function sortByTitle() {
         }
     })
 
-    showContent(peliculas)
+    showContent(database)
 }
