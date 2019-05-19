@@ -3,13 +3,14 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Lato", sans-serif;
+  letter-spacing: 2px;
 }
 
 body {
   width: 95vw;
   margin: auto;
   min-height: 100vh;
-  background-color: rgba(0, 0, 255, 0.342);
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 a {
@@ -20,45 +21,60 @@ a {
 nav {
   position: sticky;
   top: 0;
-  background-color: rgba(100, 148, 237, 0.25);
+  background-color: rgba(14, 16, 19, 0.5);
   z-index: 100;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  padding: 1vw;
-  border-radius: 50px 5px 50px 5px;
+  height: 60px;
 }
-nav input {
-  margin: 1vw;
-  flex: 1;
-  border-radius: 5px;
-  height: 50px;
-  font-size: 1em;
-}
-nav a {
-  flex: 0.5;
-}
-nav a h3 {
-  padding: 1vw;
-  border: 1px solid grey;
-  text-align: center;
+nav:hover {
+  background: black;
 }
 nav button {
+  transition: 0.5s;
   height: 50px;
-  margin: 1vw;
-  flex: 0.5;
   cursor: pointer;
+  background-color: transparent;
+  color: grey;
+  border: 1px solid rgba(150, 150, 150, 0.3);
+  border-top: 0;
+  border-bottom: 0;
+  font-weight: 100;
+  padding: 10px;
+}
+nav button:hover {
+  color: black;
+  background-color: white;
+  transform: translateY(-3px);
+}
+nav a {
+  color: grey;
+  font-weight: 100;
+  font-size: 1em;
+  padding: 10px;
+}
+nav i {
+  color: grey;
+}
+nav input {
+  position: relative;
+  background-color: transparent;
+  border: 0;
+  border-bottom: 3px solid grey;
+  width: 30vw;
+  outline-style: none;
 }
 
-#index-container {
+#indexContainer {
   display: flex;
   flex-direction: row;
   flex-flow: wrap;
   border: 1px solid grey;
   width: 100%;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.486);
 }
-#index-container .card {
+#indexContainer .card {
   text-align: center;
   padding: 1vh;
   width: 22%;
@@ -68,25 +84,25 @@ nav button {
   background-color: white;
   position: relative;
 }
-#index-container .card:hover {
+#indexContainer .card:hover {
   cursor: pointer;
   transform: translateY(-10px);
   box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.22);
   -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.22);
   -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.22);
 }
-#index-container .card img {
+#indexContainer .card img {
   width: 60%;
   height: auto;
   margin: 1vh auto;
   border-radius: 15px;
 }
-#index-container .card small,
-#index-container .card .fa-user {
+#indexContainer .card small,
+#indexContainer .card .fa-user {
   padding: 1vh;
   color: grey;
 }
-#index-container .card .voteContain {
+#indexContainer .card .voteContain {
   display: flex;
   flex-direction: row;
   margin-top: 3vh;
@@ -94,19 +110,19 @@ nav button {
   flex: 0.8;
   padding-bottom: 0;
 }
-#index-container .card .voteContain .fa-star,
-#index-container .card .voteContain .fa-star-half-alt {
+#indexContainer .card .voteContain .fa-star,
+#indexContainer .card .voteContain .fa-star-half-alt {
   color: gold;
 }
-#index-container .card .voteContain .far {
+#indexContainer .card .voteContain .far {
   color: grey;
 }
-#index-container .card .divBottom {
+#indexContainer .card .divBottom {
   margin-top: 2vh;
   display: flex;
   justify-content: space-between;
 }
-#index-container .card .divBottom h1 {
+#indexContainer .card .divBottom h1 {
   font-size: 130%;
   flex: 1.2;
   display: inline;
@@ -114,52 +130,34 @@ nav button {
   padding-bottom: 3vh;
 }
 
-#detail-container {
-  margin: 1vh auto 0 0;
-  background-color: white;
+#detailContainer h1 {
+  font-size: 5vw;
+  border-bottom: 5px solid black;
+}
+#detailContainer .voteContain,
+#detailContainer .voteContain ~ div,
+#detailContainer img,
+#detailContainer p {
+  margin-top: 3vh;
+}
+#detailContainer img {
+  border-radius: 10px;
+}
+#detailContainer .voteContain {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
 }
-#detail-container > div {
-  width: 45%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: auto;
-  position: relative;
+#detailContainer .voteContain > div {
+  padding: 0 3vw 0 0;
 }
-#detail-container > div .titleDetail {
-  padding: 0.5vw;
-  margin-top: 5vh;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid grey;
-  border-right: 1px solid grey;
+#detailContainer .voteContain i {
+  font-size: 1.5em;
 }
-#detail-container > div .titleDetail h1 {
-  font-size: 3vw;
-}
-#detail-container > div .titleDetail .voteContain i {
-  font-size: 1em;
-}
-#detail-container > div .titleDetail .voteContain .fas {
+#detailContainer .voteContain .fas {
   color: gold;
 }
-#detail-container > div .titleDetail .voteContain .far, #detail-container > div .titleDetail .voteContain .fa-user {
-  color: grey;
-}
-#detail-container > div img {
-  margin: 3vh auto;
-  width: 50%;
-  height: auto;
-}
-#detail-container > div p {
-  font-size: 1.4vw;
-  position: absolute;
-  bottom: 8vh;
+#detailContainer .voteContain .fa-user {
+  color: black;
 }
 
 /*# sourceMappingURL=main.css.map */
