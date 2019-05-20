@@ -217,8 +217,10 @@ nav input:hover {
 #detailContainer .voteContain .fa-user {
   color: black;
 }
-
-.picsContainer {
+#detailContainer .voteContain .fa-heart {
+  color: #dd2d2d;
+}
+#detailContainer .picsContainer {
   margin-top: 5vh;
   background-color: rgba(128, 128, 128, 0.397);
   max-height: 60vh;
@@ -228,12 +230,12 @@ nav input:hover {
   position: relative;
   overflow: hidden;
 }
-.picsContainer .posterImg {
+#detailContainer .picsContainer .posterImg {
   height: 100%;
   width: auto;
   align-self: center;
 }
-.picsContainer .bckgrImg {
+#detailContainer .picsContainer .bckgrImg {
   position: absolute;
   bottom: -30vh;
   border-radius: 0;
@@ -248,18 +250,18 @@ nav input:hover {
   filter: saturate(30%);
 }
 @media (max-width: 1250px) {
-  .picsContainer .bckgrImg {
+  #detailContainer .picsContainer .bckgrImg {
     bottom: 0;
     transform: scale(1.7);
   }
 }
 @media (max-width: 850px) {
-  .picsContainer .bckgrImg {
+  #detailContainer .picsContainer .bckgrImg {
     bottom: 10vh;
     transform: scale(1.7);
   }
 }
-.picsContainer p {
+#detailContainer .picsContainer p {
   padding: 10vw;
   font-size: 0.9em;
   font-weight: 600;
@@ -268,15 +270,32 @@ nav input:hover {
   text-align: justify;
 }
 @media (max-width: 850px) {
-  .picsContainer p {
+  #detailContainer .picsContainer p {
     font-size: 0.7em;
   }
 }
 @media (max-width: 700px) {
-  .picsContainer p {
+  #detailContainer .picsContainer p {
     font-size: 0.6em;
     padding: 5vw;
   }
+}
+
+.closeWindow {
+  position: absolute;
+  top: 40vh;
+  right: 10vw;
+  border: 1px solid black;
+  background-color: grey;
+  padding: 10px;
+  z-index: 500;
+}
+.closeWindow:hover {
+  background-color: red;
+  color: white;
+  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.22);
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.22);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.22);
 }
 
 /*# sourceMappingURL=main.css.map */

@@ -244,66 +244,89 @@ nav {
         .fa-user {
             color: black
         }
+
+        .fa-heart {
+            color: rgb(221, 45, 45)
+        }
+    }
+
+    .picsContainer {
+        margin-top: 5vh;
+        background-color: rgba(128, 128, 128, 0.397);
+        max-height: 60vh;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+
+        .posterImg {
+            height: 100%;
+            width: auto;
+            align-self: center
+        }
+
+        .bckgrImg {
+            position: absolute;
+            bottom: -30vh;
+            border-radius: 0;
+            width: 100%;
+            height: auto;
+            background-attachment: fixed;
+            z-index: -1;
+            filter: brightness(0.2) contrast(200%) opacity(10%) drop-shadow(16px 16px 20px blue);
+            filter: hue-rotate(90deg);
+            filter: invert(75%);
+            filter: opacity(25%);
+            filter: saturate(30%);
+
+            @media (max-width: 1250px) {
+                bottom: 0;
+                transform: scale(1.7)
+            }
+
+            @media (max-width: 850px) {
+                bottom: 10vh;
+                transform: scale(1.7)
+            }
+        }
+
+        p {
+            padding: 10vw;
+            font-size: 0.9em;
+            font-weight: 600;
+            color: white;
+            background-color: rgba(128, 128, 128, 0.1);
+            text-align: justify;
+
+            @media (max-width: 850px) {
+                font-size: 0.7em
+            }
+
+            @media (max-width: 700px) {
+                font-size: 0.6em;
+                padding: 5vw
+            }
+        }
+
     }
 }
 
-.picsContainer {
-    margin-top: 5vh;
-    background-color: rgba(128, 128, 128, 0.397);
-    max-height: 60vh;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
 
-    .posterImg {
-        height: 100%;
-        width: auto;
-        align-self: center
-    }
+.closeWindow {
+    position: absolute;
+    top: 40vh;
+    right: 10vw;
+    border: 1px solid black;
+    background-color: grey;
+    padding: 10px;
+    z-index: 500;
 
-    .bckgrImg {
-        position: absolute;
-        bottom: -30vh;
-        border-radius: 0;
-        width: 100%;
-        height: auto;
-        background-attachment: fixed;
-        z-index: -1;
-        filter: brightness(0.2) contrast(200%) opacity(10%) drop-shadow(16px 16px 20px blue);
-        filter: hue-rotate(90deg);
-        filter: invert(75%);
-        filter: opacity(25%);
-        filter: saturate(30%);
-
-        @media (max-width: 1250px) {
-            bottom: 0;
-            transform: scale(1.7)
-        }
-
-        @media (max-width: 850px) {
-            bottom: 10vh;
-            transform: scale(1.7)
-        }
-    }
-
-    p {
-        padding: 10vw;
-        font-size: 0.9em;
-        font-weight: 600;
+    &:hover {
+        background-color: red;
         color: white;
-        background-color: rgba(128, 128, 128, 0.1);
-        text-align: justify;
-
-        @media (max-width: 850px) {
-            font-size: 0.7em
-        }
-
-        @media (max-width: 700px) {
-            font-size: 0.6em;
-            padding: 5vw
-        }
-
+        box-shadow: $shadow;
+        -webkit-box-shadow: $shadow;
+        -moz-box-shadow: $shadow
     }
 }

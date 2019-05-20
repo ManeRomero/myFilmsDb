@@ -25,7 +25,6 @@ BTN_SORT_RELEASE.addEventListener('click', sortByRelease)
 const BTN_CATCH = document.querySelector('#searchBtn')
 BTN_CATCH.addEventListener('click', goSearch)
 
-
 async function load() {
 
     let generate = await axios.get(API_URL + API_POPULAR_URL + API_KEY)
