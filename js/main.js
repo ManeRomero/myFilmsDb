@@ -26,12 +26,13 @@ const BTN_CATCH = document.querySelector('#searchBtn')
 BTN_CATCH.addEventListener('click', goSearch)
 
 
-function load() {
+async function load() {
 
-    axios.get(API_URL + API_POPULAR_URL + API_KEY).then((res) => {
-        peliculas = res.data.results
-        showContent(peliculas)
-    })
+    let generate = await axios.get(API_URL + API_POPULAR_URL + API_KEY)
+    let result = generate.data.results
+    peliculas = result
+    showContent(result)
+
 }
 
 function showContent(dataReceipt) {

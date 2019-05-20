@@ -10,14 +10,13 @@ const API_KEY = '?api_key=8a91f689a2a058d84eef64d25fa79756';
 const API_POST = '&language=en-US'
 let pelicula = []
 
-function load() {
+async function load() {
     let url = new URL(window.location.href)
     let filmID = url.searchParams.get('pelicula').valueOf()
 
-    axios.get(API_URL + API_PREFIX + filmID + API_KEY + API_POST).then((res) => {
-        pelicula = res.data
-        showContent(pelicula)
-    })
+    let generate = await axios.get(API_URL + API_PREFIX + filmID + API_KEY + API_POST)
+    pelicula = generate.data
+    showContent(pelicula)
 }
 
 function showContent(item) {
@@ -35,7 +34,7 @@ function showContent(item) {
     const STAR_FULL = 'fas fa-star'
     const STAR_EMPTY = 'far fa-star'
     const URL_BASE = 'http://image.tmdb.org/t/p/w185/'
-    const IMG_PATH_BACKGROUND = 'http://image.tmdb.org/t/p/w1280/' 
+    const IMG_PATH_BACKGROUND = 'http://image.tmdb.org/t/p/w1280/'
     const maxVoteValue = 5
     const COUNT_STARS = vote_average / 2
 
