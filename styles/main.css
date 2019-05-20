@@ -48,6 +48,11 @@ nav button:hover {
   color: gold;
   transform: translateY(-3px);
 }
+nav .myFavs:hover {
+  background-color: rgba(221, 45, 45, 0.5);
+  border-color: white;
+  color: white;
+}
 nav a {
   transition: 0.5s;
   color: grey;
@@ -127,6 +132,7 @@ nav input:hover {
   border-radius: 5px;
   background-color: white;
   position: relative;
+  overflow: hidden;
 }
 @media (max-width: 850px) {
   #indexContainer .card {
@@ -146,7 +152,7 @@ nav input:hover {
   -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.22);
 }
 #indexContainer .card img {
-  width: 60%;
+  width: 70%;
   height: auto;
   margin: 1vh auto;
   border-radius: 15px;
@@ -155,6 +161,15 @@ nav input:hover {
 #indexContainer .card .fa-user {
   padding: 1vh;
   color: grey;
+}
+#indexContainer .card .fa-heart {
+  color: #dd2d2d;
+  font-size: 80px;
+  transform: rotateZ(-5deg);
+  opacity: 0.5;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 #indexContainer .card .voteContain {
   display: flex;

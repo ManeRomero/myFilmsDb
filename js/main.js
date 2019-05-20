@@ -8,7 +8,7 @@ const API_URL = 'https://api.themoviedb.org/3/';
 const API_KEY = '?api_key=8a91f689a2a058d84eef64d25fa79756';
 
 const API_POPULAR_URL = 'movie/popular'
-const API_GENRE = 'genre/movie/list'
+// const API_GENRE = 'genre/movie/list'
 
 let peliculas = []
 // let generos = []
@@ -22,8 +22,12 @@ BTN_SORT_POPULARITY.addEventListener('click', sortByPopularity)
 const BTN_SORT_RELEASE = document.querySelector('#sortRelease')
 BTN_SORT_RELEASE.addEventListener('click', sortByRelease)
 
+const BTN_FAVS = document.querySelector('#sortFavs')
+BTN_FAVS.addEventListener('click', myFavs)
+
 const BTN_CATCH = document.querySelector('#searchBtn')
 BTN_CATCH.addEventListener('click', goSearch)
+
 
 async function load() {
 
@@ -56,12 +60,13 @@ function showContent(dataReceipt) {
         card.setAttribute('title', `${title} \n${release_date}\n\nValoración del público: ${vote_average}\nNúmero de Votos: ${vote_count}\n\n(Click para ver Sinopsis)`)
         card.setAttribute('data', `${id}`)
 
-
         card.innerHTML =
-            `<a href="/detail.html?pelicula=${id}">
-                                        <img src="${URL + poster_path}"</img>
-                                        <div class="divBottom"><h1>${title}</h1></div>
-                                        <i class="fas fa-user"></i><small>${vote_count}</small><a/>`
+            `<i class="${checkFav()}"></i>
+            <a href="/detail.html?pelicula=${id}">
+            <img src="${URL + poster_path}"</img>
+            <div class="divBottom"><h1>${title}</h1></div>
+            <i class="fas fa-user"></i><small>${vote_count}</small><a/>
+            `
 
         let rateContainer = document.createElement('div')
         let descriptionText = document.createElement('small')
@@ -73,6 +78,13 @@ function showContent(dataReceipt) {
             let icon = document.createElement('i')
             i < COUNT_STARS ? icon.innerHTML = `<i class="${STAR_FULL}"></i>` : icon.innerHTML = `<i class="${STAR_EMPTY}"></i>`
             rateContainer.appendChild(icon)
+        }
+
+        function checkFav() {
+            let arr_favs = localStorage.getItem(`favoritos_${id}`)
+            arr_favs = JSON.parse(arr_favs)
+            // console.log(arr_favs, ' · ', id)
+            return arr_favs == id ? 'fas fa-heart' : ''
         }
 
         card.appendChild(rateContainer)
@@ -179,4 +191,15 @@ function sortByTitle() {
     })
 
     showContent(peliculas)
+}
+
+function myFavs() {
+    let result = peliculas.filter((item) => {
+        let check = localStorage.getItem(`favoritos_${item.id}`)
+        check = JSON.parse(check)
+        if (check == item.id) {
+            return item
+        }
+    })
+    showContent(result)
 }
