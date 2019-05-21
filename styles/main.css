@@ -83,6 +83,14 @@ nav input:hover {
   position: relative;
 }
 
+.btnGeo {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  padding: 2vw;
+  cursor: pointer;
+}
+
 .bckgr {
   width: 100%;
   height: 25vh;
@@ -234,6 +242,7 @@ nav input:hover {
 }
 #detailContainer .voteContain .fa-heart {
   color: #dd2d2d;
+  font-size: 32px;
 }
 #detailContainer .picsContainer {
   margin-top: 5vh;

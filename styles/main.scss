@@ -94,7 +94,14 @@ nav {
 
 .detailNav {
     position: relative;
+}
 
+.btnGeo {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    padding: 2vw;
+    cursor: pointer;
 }
 
 .bckgr {
@@ -263,7 +270,8 @@ nav {
         }
 
         .fa-heart {
-            color: rgb(221, 45, 45)
+            color: rgb(221, 45, 45);
+            font-size: 32px        
         }
     }
 

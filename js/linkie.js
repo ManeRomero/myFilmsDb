@@ -9,8 +9,8 @@ const API_PREFIX = 'movie/'
 const API_KEY = '?api_key=8a91f689a2a058d84eef64d25fa79756';
 const API_POST = '&language=en-US'
 let pelicula = []
-let arr_favs = []
 let checkFav
+let arr_favs = []
 let position = 0
 
 async function load() {

@@ -10,6 +10,9 @@ const API_KEY = '?api_key=8a91f689a2a058d84eef64d25fa79756';
 const API_POPULAR_URL = 'movie/popular'
 // const API_GENRE = 'genre/movie/list'
 
+let longitud
+let latitud
+
 let peliculas = []
 // let generos = []
 
@@ -25,8 +28,11 @@ BTN_SORT_RELEASE.addEventListener('click', sortByRelease)
 const BTN_FAVS = document.querySelector('#sortFavs')
 BTN_FAVS.addEventListener('click', myFavs)
 
-const BTN_CATCH = document.querySelector('#searchBtn')
-BTN_CATCH.addEventListener('click', goSearch)
+const INPUT_SEARCH = document.querySelector('#searchInput')
+INPUT_SEARCH.addEventListener('input', goSearch)
+
+const BTN_GEO = document.querySelector('.btnGeo')
+/* BTN_GEO.addEventListener('click', mapGeolocation) */
 
 
 async function load() {
@@ -34,8 +40,18 @@ async function load() {
     let generate = await axios.get(API_URL + API_POPULAR_URL + API_KEY)
     let result = generate.data.results
     peliculas = result
-    showContent(result)
 
+    if ('geolocation' in navigator) {
+        await navigator.geolocation.getCurrentPosition((respuesta) => {
+            console.log('RESPUESTA', respuesta)
+            longitud = respuesta.coords.longitude
+            latitud = respuesta.coords.latitude
+        })
+    } else {
+        console.log('NO HAY GEOLOCALIZACIÓN')
+    }
+
+    showContent(result)
 }
 
 function showContent(dataReceipt) {
@@ -94,12 +110,6 @@ function showContent(dataReceipt) {
 
 function goSearch() {
     let searchValue = document.querySelector('#searchInput').value.toLowerCase()
-
-    if (searchValue.length < 2) {
-        document.querySelector('#searchInput').value = ''
-        return console.error('Introduce mas caracteres para buscar.')
-    }
-
     let result = peliculas.filter(item => item.title.toLowerCase().includes(searchValue))
     showContent(result)
 }
@@ -147,7 +157,6 @@ function sortByPopularity() {
 function sortByTitle() {
 
     const checkClass = BTN_SORT_TITLE.classList.value
-    console.log(checkClass)
 
     const refer = ' -0-1-2-3-4-5-6-7-8-9-A-Á-À-B-C-D-E-É-È-F-G-H-I-Í-Ì-J-K-L-M-N-O-Ó-Ò-P-Q-R-S-T-U-Ú-Ù-V-W-X-Y-Z-:-!'
     const reflex = refer.split('-')
@@ -203,3 +212,20 @@ function myFavs() {
     })
     showContent(result)
 }
+
+/* async function mapGeolocation() {
+    console.log('LONG', longitud, 'LAT', latitud)
+    let divMap = document.querySelector('#googleMap')
+    let insertMap = new google.maps.Map(map, {
+        center: {latitud, longitud},
+        zoom: 8
+    })
+
+    const API_MAP_URL = 'https://maps.googleapis.com/maps/api/js?key='
+    const API_MAP_KEY = 
+    const API_MAP_SUFIX = ''
+
+    let generate = await axios.get(API_URL + API_POPULAR_URL + API_KEY)
+    <script src="YOUR_API_KEY"
+    async defer></script>
+} */
