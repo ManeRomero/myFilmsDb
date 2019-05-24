@@ -8,3 +8,5 @@ The API... I LOVE THE API!! Here is my first API connection, using the very good
 2. To design the functions about filtering for search and indexate.
 
 3. Also, to bring the user the individual point to a film.
+
+4. Once all of these is done, get into the localStorage concept, allowing user's favourites listing.
